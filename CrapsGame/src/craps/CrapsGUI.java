@@ -1,3 +1,6 @@
+/*
+ * TODO: documentation
+ */
 package craps;
 
 import java.awt.EventQueue;
