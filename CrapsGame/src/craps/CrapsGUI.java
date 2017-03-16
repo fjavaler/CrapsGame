@@ -14,6 +14,7 @@ import java.awt.Font;
 import javax.swing.JMenu;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 public class CrapsGUI
 {
@@ -56,6 +57,7 @@ public class CrapsGUI
 	private void initialize()
 	{
 		frmCrapsAGame = new JFrame();
+		frmCrapsAGame.getContentPane().setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		frmCrapsAGame.setTitle("Craps - A Game of Chance and Skill!");
 		frmCrapsAGame.setBounds(100, 100, 750, 400);
 		frmCrapsAGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,14 +106,17 @@ public class CrapsGUI
 		frmCrapsAGame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblDie = new JLabel("Die 1");
+		lblDie.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
 		lblDie.setBounds(63, 169, 61, 16);
 		frmCrapsAGame.getContentPane().add(lblDie);
 		
 		JLabel lblDie_1 = new JLabel("Die 2");
+		lblDie_1.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
 		lblDie_1.setBounds(136, 169, 61, 16);
 		frmCrapsAGame.getContentPane().add(lblDie_1);
 		
 		JLabel lblSum = new JLabel("Sum");
+		lblSum.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
 		lblSum.setBounds(209, 169, 61, 16);
 		frmCrapsAGame.getContentPane().add(lblSum);
 		
@@ -129,5 +134,11 @@ public class CrapsGUI
 		label_2.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 		label_2.setBounds(196, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(label_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("Shooter Name");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Noto Sans UI", Font.BOLD, 38));
+		lblNewLabel_1.setBounds(386, 39, 260, 80);
+		frmCrapsAGame.getContentPane().add(lblNewLabel_1);
 	}
 }
