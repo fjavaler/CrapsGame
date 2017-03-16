@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JMenu;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class CrapsGUI
 {
@@ -82,7 +83,7 @@ public class CrapsGUI
 		frmCrapsAGame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(18, 6, 223, 129);
+		lblNewLabel.setBounds(6, 6, 240, 142);
 		frmCrapsAGame.getContentPane().add(lblNewLabel);
 	}
 }
