@@ -116,14 +116,17 @@ public class CrapsGUI
 		frmCrapsAGame.getContentPane().add(lblSum);
 		
 		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 		label.setBounds(50, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(label);
 		
 		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 		label_1.setBounds(123, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 		label_2.setBounds(196, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(label_2);
 	}
