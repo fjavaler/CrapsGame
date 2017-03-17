@@ -1,9 +1,11 @@
 package craps;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 // Craps class simulates the dice game craps.
 import java.util.Random;
 
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Craps
 {
@@ -24,14 +26,9 @@ public class Craps
 	private Die die1 = new Die();
 	private Die die2 = new Die();
 
-	// gui
-	private CrapsGUI gui = new CrapsGUI();
-	
 	// plays one game of craps
 	public void play()
-	{
-		JFrame frame = gui.getFrmCrapsAGame();
-		
+	{	
 		int myPoint = 0; // point if no win or loss on first roll
 		Status gameStatus; // can contain CONTINUE, WON or LOST
 

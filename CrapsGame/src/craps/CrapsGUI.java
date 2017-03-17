@@ -25,16 +25,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
 import javax.swing.JMenu;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
 import java.awt.Color;
-import java.awt.SystemColor;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -47,6 +44,15 @@ public class CrapsGUI
 {
 
 	private JFrame frmCrapsAGame;
+	private JLabel lblDie;
+	private JLabel lblDie2;
+	private JLabel lblSum;
+	private JLabel die1ImageLbl;
+	private JLabel die2ImageLbl;
+	private JLabel sumImageLbl;
+	private JLabel shooterNameLbl;
+	private JLabel gameStatusTxt;
+	private JButton btnComeOutRoll;
 
 	/**
 	 * Launch the application.
@@ -135,49 +141,50 @@ public class CrapsGUI
 		lblNewLabel.setBounds(6, 6, 240, 142);
 		frmCrapsAGame.getContentPane().add(lblNewLabel);
 
-		JLabel lblDie = new JLabel("Die 1");
+		lblDie = new JLabel("Die 1");
 		lblDie.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
 		lblDie.setBounds(63, 169, 61, 16);
 		frmCrapsAGame.getContentPane().add(lblDie);
 
-		JLabel lblDie_1 = new JLabel("Die 2");
-		lblDie_1.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
-		lblDie_1.setBounds(136, 169, 61, 16);
-		frmCrapsAGame.getContentPane().add(lblDie_1);
+		lblDie2 = new JLabel("Die 2");
+		lblDie2.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
+		lblDie2.setBounds(136, 169, 61, 16);
+		frmCrapsAGame.getContentPane().add(lblDie2);
 
-		JLabel lblSum = new JLabel("Sum");
+		lblSum = new JLabel("Sum");
 		lblSum.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
 		lblSum.setBounds(209, 169, 61, 16);
 		frmCrapsAGame.getContentPane().add(lblSum);
 
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
-		label.setBounds(50, 197, 60, 60);
-		frmCrapsAGame.getContentPane().add(label);
+		die1ImageLbl = new JLabel("");
+		die1ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
+		die1ImageLbl.setBounds(50, 197, 60, 60);
+		frmCrapsAGame.getContentPane().add(die1ImageLbl);
 
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
-		label_1.setBounds(123, 197, 60, 60);
-		frmCrapsAGame.getContentPane().add(label_1);
+		die2ImageLbl = new JLabel("");
+		die2ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
+		die2ImageLbl.setBounds(123, 197, 60, 60);
+		frmCrapsAGame.getContentPane().add(die2ImageLbl);
 
-		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
-		label_2.setBounds(196, 197, 60, 60);
-		frmCrapsAGame.getContentPane().add(label_2);
+		sumImageLbl = new JLabel("");
+		sumImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
+		sumImageLbl.setBounds(196, 197, 60, 60);
+		frmCrapsAGame.getContentPane().add(sumImageLbl);
 
+		// DO NOT DELETE - TEMPORARILY COMMENTED OUT
 		// String name = JOptionPane.showInputDialog(frmCrapsAGame, "Please
 		// enter your name:",
 		// "Shooter's Name", JOptionPane.QUESTION_MESSAGE);
 		//
 		// JLabel lblNewLabel_1 = new JLabel(name);
-		JLabel lblNewLabel_1 = new JLabel("Shooter"); // temp
-		lblNewLabel_1.setForeground(Color.BLUE);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Noto Sans UI", Font.BOLD, 54));
-		lblNewLabel_1.setBounds(336, 38, 362, 110);
-		frmCrapsAGame.getContentPane().add(lblNewLabel_1);
+		shooterNameLbl = new JLabel("Shooter"); // temp
+		shooterNameLbl.setForeground(Color.BLUE);
+		shooterNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		shooterNameLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 54));
+		shooterNameLbl.setBounds(336, 38, 362, 110);
+		frmCrapsAGame.getContentPane().add(shooterNameLbl);
 
-		JButton btnComeOutRoll = new JButton("Come Out Roll");
+		btnComeOutRoll = new JButton("Come Out Roll");
 		btnComeOutRoll.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -194,7 +201,7 @@ public class CrapsGUI
 		lblGameStatus.setBounds(50, 299, 89, 16);
 		frmCrapsAGame.getContentPane().add(lblGameStatus);
 
-		JLabel gameStatusTxt = new JLabel("Continue");
+		gameStatusTxt = new JLabel("Continue");
 		gameStatusTxt.setForeground(Color.RED);
 		gameStatusTxt.setHorizontalAlignment(SwingConstants.CENTER);
 		gameStatusTxt.setFont(new Font("Noto Sans UI", Font.PLAIN, 18));
@@ -203,8 +210,104 @@ public class CrapsGUI
 		frmCrapsAGame.getContentPane().add(gameStatusTxt);
 	}
 
+	public JLabel getLblDie()
+	{
+		return lblDie;
+	}
+
+	public void setLblDie(JLabel lblDie)
+	{
+		this.lblDie = lblDie;
+	}
+
+	public JLabel getLblDie2()
+	{
+		return lblDie2;
+	}
+
+	public void setLblDie2(JLabel lblDie2)
+	{
+		this.lblDie2 = lblDie2;
+	}
+
+	public JLabel getLblSum()
+	{
+		return lblSum;
+	}
+
+	public void setLblSum(JLabel lblSum)
+	{
+		this.lblSum = lblSum;
+	}
+
+	public JLabel getDie1ImageLbl()
+	{
+		return die1ImageLbl;
+	}
+
+	public void setDie1ImageLbl(JLabel die1ImageLbl)
+	{
+		this.die1ImageLbl = die1ImageLbl;
+	}
+
+	public JLabel getDie2ImageLbl()
+	{
+		return die2ImageLbl;
+	}
+
+	public void setDie2ImageLbl(JLabel die2ImageLbl)
+	{
+		this.die2ImageLbl = die2ImageLbl;
+	}
+
+	public JLabel getSumImageLbl()
+	{
+		return sumImageLbl;
+	}
+
+	public void setSumImageLbl(JLabel sumImageLbl)
+	{
+		this.sumImageLbl = sumImageLbl;
+	}
+
+	public JLabel getShooterNameLbl()
+	{
+		return shooterNameLbl;
+	}
+
+	public void setShooterNameLbl(JLabel shooterNameLbl)
+	{
+		this.shooterNameLbl = shooterNameLbl;
+	}
+
+	public JButton getBtnComeOutRoll()
+	{
+		return btnComeOutRoll;
+	}
+
+	public void setBtnComeOutRoll(JButton btnComeOutRoll)
+	{
+		this.btnComeOutRoll = btnComeOutRoll;
+	}
+
+	public JLabel getGameStatusTxt()
+	{
+		return gameStatusTxt;
+	}
+
+	public void setGameStatusTxt(JLabel gameStatusTxt)
+	{
+		this.gameStatusTxt = gameStatusTxt;
+	}
+
+	public void setFrmCrapsAGame(JFrame frmCrapsAGame)
+	{
+		this.frmCrapsAGame = frmCrapsAGame;
+	}
+
 	public JFrame getFrmCrapsAGame()
 	{
 		return frmCrapsAGame;
 	}
+	
 }
