@@ -8,6 +8,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
@@ -139,7 +140,9 @@ public class CrapsGUI
 		label_2.setBounds(196, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(label_2);
 		
-		JLabel lblNewLabel_1 = new JLabel("Shooter Name");
+		String name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:", "Shooter's Name", JOptionPane.QUESTION_MESSAGE);
+		
+		JLabel lblNewLabel_1 = new JLabel(name);
 		lblNewLabel_1.setForeground(Color.BLUE);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Noto Sans UI", Font.BOLD, 54));
