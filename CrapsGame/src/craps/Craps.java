@@ -1,11 +1,7 @@
 package craps;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 // Craps class simulates the dice game craps.
 import java.util.Random;
-
-import javax.swing.JLabel;
 
 public class Craps
 {
