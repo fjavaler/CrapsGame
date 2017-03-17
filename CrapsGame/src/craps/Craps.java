@@ -68,6 +68,16 @@ public class Craps
 			System.out.println("Player loses");
 	} // end method play
 
+	public Die getDie1()
+	{
+		return die1;
+	}
+
+	public Die getDie2()
+	{
+		return die2;
+	}
+
 	// roll dice, calculate sum and display results
 	public int rollDice()
 	{
