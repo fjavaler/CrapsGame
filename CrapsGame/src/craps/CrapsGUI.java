@@ -158,16 +158,23 @@ public class CrapsGUI
 		frmCrapsAGame.getContentPane().add(lblSum);
 
 		die1ImageLbl = new JLabel("");
+		die1ImageLbl.setBackground(Color.WHITE);
+		die1ImageLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 50));
+		die1ImageLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		die1ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 		die1ImageLbl.setBounds(50, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(die1ImageLbl);
 
 		die2ImageLbl = new JLabel("");
+		die2ImageLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 50));
+		die2ImageLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		die2ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 		die2ImageLbl.setBounds(123, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(die2ImageLbl);
 
 		sumImageLbl = new JLabel("");
+		sumImageLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 50));
+		sumImageLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		sumImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 		sumImageLbl.setBounds(196, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(sumImageLbl);
@@ -185,18 +192,6 @@ public class CrapsGUI
 		shooterNameLbl.setBounds(336, 38, 362, 110);
 		frmCrapsAGame.getContentPane().add(shooterNameLbl);
 
-		btnComeOutRoll = new JButton("Come Out Roll");
-		btnComeOutRoll.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				craps.play();
-			}
-		});
-		btnComeOutRoll.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
-		btnComeOutRoll.setBounds(445, 156, 150, 44);
-		frmCrapsAGame.getContentPane().add(btnComeOutRoll);
-
 		JLabel lblGameStatus = new JLabel("Game Status:");
 		lblGameStatus.setFont(new Font("Noto Sans UI", Font.PLAIN, 13));
 		lblGameStatus.setBounds(50, 299, 89, 16);
@@ -209,6 +204,52 @@ public class CrapsGUI
 		gameStatusTxt.setBackground(Color.WHITE);
 		gameStatusTxt.setBounds(136, 293, 78, 24);
 		frmCrapsAGame.getContentPane().add(gameStatusTxt);
+		
+		JLabel winLoseLbl = new JLabel("");
+		winLoseLbl.setForeground(Color.GREEN);
+		winLoseLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 90));
+		winLoseLbl.setBounds(373, 212, 300, 137);
+		frmCrapsAGame.getContentPane().add(winLoseLbl);
+		
+		btnComeOutRoll = new JButton("Come Out Roll");
+		btnComeOutRoll.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				craps.play();
+				
+				// make die one roll value appear
+				die1ImageLbl.setIcon(null);
+				die1ImageLbl.setText("" + craps.getDie1().getValue());
+				
+				// make die two roll value appear
+				die2ImageLbl.setIcon(null);
+				die2ImageLbl.setText("" + craps.getDie2().getValue());
+				
+				// make sum value appear
+				int die1 = craps.getDie1().getValue();
+				int die2 = craps.getDie2().getValue();
+				int sum = die1 + die2;
+				sumImageLbl.setIcon(null);
+				sumImageLbl.setText("" + sum);
+				
+				if(sum != 7 && sum != 11)
+				{
+					btnComeOutRoll.setText("Point Role");
+					int point = sum;
+//					TODO:
+				}
+				else
+				{
+					btnComeOutRoll.setText("Come Out Roll");
+					winLoseLbl.setText("WINNER!");
+					winLoseLbl.setForeground(Color.GREEN);
+				}
+			}
+		});
+		btnComeOutRoll.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
+		btnComeOutRoll.setBounds(445, 156, 150, 44);
+		frmCrapsAGame.getContentPane().add(btnComeOutRoll);
 	}
 
 	public JLabel getLblDie()

@@ -3,6 +3,8 @@ package craps;
 // Craps class simulates the dice game craps.
 import java.util.Random;
 
+import javax.swing.JLabel;
+
 public class Craps
 {
 	// enumeration with constants that represent the game status
@@ -21,7 +23,7 @@ public class Craps
 	// die
 	private Die die1 = new Die();
 	private Die die2 = new Die();
-
+	
 	// plays one game of craps
 	public void play()
 	{	
