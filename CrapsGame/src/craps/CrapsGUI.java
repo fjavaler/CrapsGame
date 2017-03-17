@@ -5,7 +5,7 @@
  *  Name    :  <Name of programmer>
  *  Date    :  <Date created (project due date)>
  *
- *  Description : (Narrative desciption, not code)
+ *  Description : (Narrative description, not code)
  *
  *    1) What is the purpose of the code; what problem does the code solve.
  *
@@ -35,6 +35,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.SystemColor;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -83,7 +86,7 @@ public class CrapsGUI
 		frmCrapsAGame = new JFrame();
 		frmCrapsAGame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frmCrapsAGame.setBackground(Color.WHITE);
-		frmCrapsAGame.getContentPane().setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		frmCrapsAGame.getContentPane().setFont(new Font("Noto Sans UI", Font.PLAIN, 15));
 		frmCrapsAGame.setTitle("Craps - A Game of Chance and Skill!");
 		frmCrapsAGame.setBounds(100, 100, 750, 400);
 		frmCrapsAGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -162,14 +165,27 @@ public class CrapsGUI
 		label_2.setBounds(196, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(label_2);
 		
-		String name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:",
-				"Shooter's Name", JOptionPane.QUESTION_MESSAGE);
-		
-		JLabel lblNewLabel_1 = new JLabel(name);
+//		String name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:",
+//				"Shooter's Name", JOptionPane.QUESTION_MESSAGE);
+//		
+//		JLabel lblNewLabel_1 = new JLabel(name);
+		JLabel lblNewLabel_1 = new JLabel("Shooter"); //temp
 		lblNewLabel_1.setForeground(Color.BLUE);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Noto Sans UI", Font.BOLD, 54));
 		lblNewLabel_1.setBounds(336, 38, 362, 110);
 		frmCrapsAGame.getContentPane().add(lblNewLabel_1);
+		
+		JButton btnComeOutRoll = new JButton("Come Out Roll");
+		btnComeOutRoll.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+			}
+		});
+		btnComeOutRoll.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
+		btnComeOutRoll.setBounds(445, 156, 150, 44);
+		frmCrapsAGame.getContentPane().add(btnComeOutRoll);
 	}
 }
