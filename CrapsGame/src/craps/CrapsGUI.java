@@ -1,6 +1,23 @@
-/*
- * TODO: documentation
- */
+/********************************************************
+ * TODO:
+ *  Project :  <Name of project|assignment>
+ *  File    :  <Name of source code file>
+ *  Name    :  <Name of programmer>
+ *  Date    :  <Date created (project due date)>
+ *
+ *  Description : (Narrative desciption, not code)
+ *
+ *    1) What is the purpose of the code; what problem does the code solve.
+ *
+ *    2) What data-structures are used.
+ *
+ *    3) What algorithms, techniques, etc. are used in implementing the data structures.
+ *
+ *    4) What methods are implemented (optional).
+ *
+ *  Changes :  <Description|date of modifications>
+ *
+ ********************************************************/
 package craps;
 
 import java.awt.EventQueue;
@@ -19,6 +36,10 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.SystemColor;
 
+/**
+ * 
+ * @author Frederick Javalera
+ */
 public class CrapsGUI
 {
 
@@ -66,6 +87,7 @@ public class CrapsGUI
 		frmCrapsAGame.setTitle("Craps - A Game of Chance and Skill!");
 		frmCrapsAGame.setBounds(100, 100, 750, 400);
 		frmCrapsAGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCrapsAGame.setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Noto Sans UI", Font.PLAIN, 14));
@@ -140,7 +162,8 @@ public class CrapsGUI
 		label_2.setBounds(196, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(label_2);
 		
-		String name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:", "Shooter's Name", JOptionPane.QUESTION_MESSAGE);
+		String name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:",
+				"Shooter's Name", JOptionPane.QUESTION_MESSAGE);
 		
 		JLabel lblNewLabel_1 = new JLabel(name);
 		lblNewLabel_1.setForeground(Color.BLUE);
