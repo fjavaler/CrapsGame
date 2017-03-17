@@ -23,7 +23,7 @@ public class Craps
 	private Die die2 = new Die();
 
 	// gui
-	CrapsGUI gui = new CrapsGUI();
+	private CrapsGUI gui = new CrapsGUI();
 	
 	// plays one game of craps
 	public void play()

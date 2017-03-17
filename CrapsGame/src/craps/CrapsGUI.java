@@ -202,4 +202,9 @@ public class CrapsGUI
 		gameStatusTxt.setBounds(136, 293, 78, 24);
 		frmCrapsAGame.getContentPane().add(gameStatusTxt);
 	}
+
+	public JFrame getFrmCrapsAGame()
+	{
+		return frmCrapsAGame;
+	}
 }
