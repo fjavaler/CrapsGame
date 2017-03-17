@@ -190,7 +190,7 @@ public class CrapsGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-
+				craps.play();
 			}
 		});
 		btnComeOutRoll.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
