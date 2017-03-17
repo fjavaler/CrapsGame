@@ -3,6 +3,8 @@ package craps;
 // Craps class simulates the dice game craps.
 import java.util.Random;
 
+import javax.swing.JFrame;
+
 public class Craps
 {
 	// enumeration with constants that represent the game status
@@ -28,6 +30,8 @@ public class Craps
 	// plays one game of craps
 	public void play()
 	{
+		JFrame frame = gui.getFrmCrapsAGame();
+		
 		int myPoint = 0; // point if no win or loss on first roll
 		Status gameStatus; // can contain CONTINUE, WON or LOST
 
