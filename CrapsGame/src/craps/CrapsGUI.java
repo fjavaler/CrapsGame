@@ -58,8 +58,8 @@ public class CrapsGUI
 	private JButton btnComeOutRoll;
 	private Die die1 = new Die();
 	private Die die2 = new Die();
-	private int sum;
-	private int point;
+	private int sum = 0;
+	private int point = 0;
 	private int isPointRoll = 0;
 	private int numRolls = 0;
 	private ArrayList<Integer> rolls = new ArrayList<Integer>();
@@ -206,7 +206,7 @@ public class CrapsGUI
 		lblGameStatus.setBounds(50, 299, 89, 16);
 		frmCrapsAGame.getContentPane().add(lblGameStatus);
 
-		gameStatusTxt = new JLabel("Continue");
+		gameStatusTxt = new JLabel("");
 		gameStatusTxt.setForeground(Color.RED);
 		gameStatusTxt.setHorizontalAlignment(SwingConstants.CENTER);
 		gameStatusTxt.setFont(new Font("Noto Sans UI", Font.PLAIN, 18));
@@ -301,7 +301,7 @@ public class CrapsGUI
 				int reply = JOptionPane.showConfirmDialog(frmCrapsAGame, "Would you like to play again?");
 				if (reply == JOptionPane.YES_OPTION)
 			    {
-					CrapsGUI.main(null);
+					reset();
 			    }
 				else if(reply == JOptionPane.CANCEL_OPTION)
 				{
@@ -311,6 +311,18 @@ public class CrapsGUI
 				{
 					System.exit(0);
 				}
+			}
+
+			private void reset()
+			{
+				sum = 0;
+				point = 0;
+				isPointRoll = 0;
+				numRolls = 0;
+				btnComeOutRoll.setText("Come Out Roll");
+				winLoseLbl.setText("");
+				gameStatusTxt.setText("");
+				isPointRoll = 0;
 			}
 
 			private void keepPlayingPoint(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt,
