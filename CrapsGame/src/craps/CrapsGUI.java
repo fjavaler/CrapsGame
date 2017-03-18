@@ -327,6 +327,9 @@ public class CrapsGUI
 				winLoseLbl.setText("");
 				gameStatusTxt.setText("");
 				isPointRoll = 0;
+				die1ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
+				die2ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
+				sumImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 			}
 
 			private void keepPlayingPoint(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt,
