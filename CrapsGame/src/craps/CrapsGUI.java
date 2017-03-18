@@ -44,7 +44,7 @@ import java.awt.event.ActionEvent;
  */
 public class CrapsGUI
 {
-	
+
 	private JFrame frmCrapsAGame;
 	private JLabel lblDie;
 	private JLabel lblDie2;
@@ -204,8 +204,9 @@ public class CrapsGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JOptionPane.showMessageDialog(frmCrapsAGame, "Average Number of Rolls per Game: " + numRolls / totalGames,
-						"Average Rolls", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(frmCrapsAGame,
+						"Average Number of Rolls per Game: " + numRolls / totalGames, "Average Rolls",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnGameStats.add(mntmAvgRollsgame);
@@ -215,8 +216,10 @@ public class CrapsGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JOptionPane.showMessageDialog(frmCrapsAGame, "Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
-						+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames, "Summary", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(frmCrapsAGame,
+						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
+								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
+						"Summary", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnGameStats.add(mntmSummary);
@@ -388,14 +391,26 @@ public class CrapsGUI
 
 			private void prompt()
 			{
-				int reply = JOptionPane.showConfirmDialog(frmCrapsAGame, "Would you like to play again?");
+				int reply = JOptionPane.showConfirmDialog(frmCrapsAGame, 
+						"Would you like to play again?");
 				if (reply == JOptionPane.YES_OPTION)
 				{
 					reset();
 				}
 				else if (reply == JOptionPane.CANCEL_OPTION)
 				{
-					
+					try
+					{
+						while(true)
+						{
+							Thread.sleep(Integer.parseInt("5000"));
+							prompt();
+						}
+					}
+					catch (InterruptedException ex)
+					{
+						Thread.currentThread().interrupt();
+					}
 				}
 				else if (reply == JOptionPane.NO_OPTION)
 				{
