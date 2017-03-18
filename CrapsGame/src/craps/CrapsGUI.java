@@ -44,7 +44,7 @@ import java.awt.event.ActionEvent;
  */
 public class CrapsGUI
 {
-
+	
 	private JFrame frmCrapsAGame;
 	private JLabel lblDie;
 	private JLabel lblDie2;
@@ -66,7 +66,6 @@ public class CrapsGUI
 	private String name;
 	private int totalGames = 1;
 	private int totalWins = 0;
-	protected int avgNumRolls = 0;
 
 	/**
 	 * Launch the application.
@@ -138,7 +137,7 @@ public class CrapsGUI
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
 						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
-								+ totalWins + "\nAverage Rolls Per Game: " + avgNumRolls,
+								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
 
@@ -205,8 +204,7 @@ public class CrapsGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				avgNumRolls = numRolls / totalGames;
-				JOptionPane.showMessageDialog(frmCrapsAGame, "Average Number of Rolls per Game: " + avgNumRolls,
+				JOptionPane.showMessageDialog(frmCrapsAGame, "Average Number of Rolls per Game: " + numRolls / totalGames,
 						"Average Rolls", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -218,7 +216,7 @@ public class CrapsGUI
 			public void actionPerformed(ActionEvent e)
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame, "Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
-						+ totalWins + "/nAverage Rolls Per Game: " + avgNumRolls, "Average Rolls", JOptionPane.INFORMATION_MESSAGE);
+						+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames, "Summary", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnGameStats.add(mntmSummary);
@@ -397,7 +395,7 @@ public class CrapsGUI
 				}
 				else if (reply == JOptionPane.CANCEL_OPTION)
 				{
-					// do nothing
+					
 				}
 				else if (reply == JOptionPane.NO_OPTION)
 				{
@@ -410,7 +408,7 @@ public class CrapsGUI
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
 						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
-								+ totalWins + "\nAverage Rolls Per Game: " + avgNumRolls,
+								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
 
