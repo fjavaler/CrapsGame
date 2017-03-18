@@ -37,6 +37,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
 
 /**
  * 
@@ -172,6 +173,9 @@ public class CrapsGUI
 				System.exit(0);
 			}
 		});
+
+		JSeparator separator_1 = new JSeparator();
+		mnFile.add(separator_1);
 		mnFile.add(mntmExit);
 
 		JMenu mnGameStats = new JMenu("Game Stats");
@@ -222,15 +226,37 @@ public class CrapsGUI
 						"Summary", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
+
+		JSeparator separator = new JSeparator();
+		mnGameStats.add(separator);
 		mnGameStats.add(mntmSummary);
 
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
 
 		JMenuItem mntmInstructions = new JMenuItem("Instructions");
+		mntmInstructions.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(frmCrapsAGame,
+						"Set up\n    Select File | New Shooter\n        Enter player's name\n\nPlay\n    Click the Come-out Roll button\n        Win if you roll 7 or 11\n        Lose if you roll 2, 3, or 12\n        Otherwise set point value and continue\n    Point roll\n        Win if you roll your point value\n        Lose if you roll7\n        Otherwise continue until you win or lose",
+						"How To Play Craps", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnHelp.add(mntmInstructions);
 
+		JSeparator separator_2 = new JSeparator();
+		mnHelp.add(separator_2);
+
 		JMenuItem mntmAbout = new JMenuItem("About");
+		mntmAbout.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				
+			}
+		});
 		mnHelp.add(mntmAbout);
 		frmCrapsAGame.getContentPane().setLayout(null);
 
@@ -391,8 +417,7 @@ public class CrapsGUI
 
 			private void prompt()
 			{
-				int reply = JOptionPane.showConfirmDialog(frmCrapsAGame, 
-						"Would you like to play again?");
+				int reply = JOptionPane.showConfirmDialog(frmCrapsAGame, "Would you like to play again?");
 				if (reply == JOptionPane.YES_OPTION)
 				{
 					reset();
@@ -401,7 +426,7 @@ public class CrapsGUI
 				{
 					try
 					{
-						while(true)
+						while (true)
 						{
 							Thread.sleep(Integer.parseInt("5000"));
 							prompt();
@@ -505,5 +530,4 @@ public class CrapsGUI
 	{
 		return rolls;
 	}
-
 }
