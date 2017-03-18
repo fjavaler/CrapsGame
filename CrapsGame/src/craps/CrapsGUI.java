@@ -123,6 +123,7 @@ public class CrapsGUI
 				// name prompt
 				namePrompt();
 				// reset rolls
+				
 				// reset game
 				// start game?
 			}
