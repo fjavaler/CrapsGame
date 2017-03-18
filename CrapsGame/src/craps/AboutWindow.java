@@ -2,10 +2,11 @@ package craps;
 
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class AboutWindow
 {
@@ -55,9 +56,11 @@ public class AboutWindow
 		JLabel logoLabel = new JLabel("");
 		logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		logoLabel.setBounds(54, 0, 340, 100);
+		logoLabel.setIcon(new ImageIcon(AboutWindow.class.getResource("/slccLogo.png")));
 		frame.getContentPane().add(logoLabel);
 		
 		JLabel txtLabel = new JLabel("");
+		txtLabel.setBackground(Color.WHITE);
 		txtLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		txtLabel.setBounds(8, 106, 434, 116);
 		frame.getContentPane().add(txtLabel);
