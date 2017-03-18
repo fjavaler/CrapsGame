@@ -52,14 +52,14 @@ public class AboutWindow
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel label = new JLabel("");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(54, 0, 340, 100);
-		frame.getContentPane().add(label);
+		JLabel logoLabel = new JLabel("");
+		logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		logoLabel.setBounds(54, 0, 340, 100);
+		frame.getContentPane().add(logoLabel);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(8, 106, 434, 116);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel txtLabel = new JLabel("");
+		txtLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		txtLabel.setBounds(8, 106, 434, 116);
+		frame.getContentPane().add(txtLabel);
 	}
 }
