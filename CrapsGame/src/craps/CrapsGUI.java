@@ -64,6 +64,9 @@ public class CrapsGUI
 	private int numRolls = 0;
 	private ArrayList<Integer> rolls = new ArrayList<Integer>();
 	private String name;
+	private int totalGames = 1;
+	private int totalWins = 0;
+	protected int avgNumRolls = 0;
 
 	/**
 	 * Launch the application.
@@ -133,7 +136,10 @@ public class CrapsGUI
 
 			private void displayStats()
 			{
-				
+				JOptionPane.showMessageDialog(frmCrapsAGame,
+						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
+								+ totalWins + "\nAverage Rolls Per Game: " + avgNumRolls,
+						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
 
 			private void reset()
@@ -173,15 +179,48 @@ public class CrapsGUI
 		menuBar.add(mnGameStats);
 
 		JMenuItem mntmTotalGames = new JMenuItem("Total Games");
+		mntmTotalGames.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(frmCrapsAGame, "Total Number of Games: " + totalGames, "Total Games",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnGameStats.add(mntmTotalGames);
 
 		JMenuItem mntmTotalWins = new JMenuItem("Total Wins");
+		mntmTotalWins.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(frmCrapsAGame, "Total Wins: " + totalWins, "Total Wins",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnGameStats.add(mntmTotalWins);
 
 		JMenuItem mntmAvgRollsgame = new JMenuItem("Avg Rolls/Game");
+		mntmAvgRollsgame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				avgNumRolls = numRolls / totalGames;
+				JOptionPane.showMessageDialog(frmCrapsAGame, "Average Number of Rolls per Game: " + avgNumRolls,
+						"Average Rolls", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnGameStats.add(mntmAvgRollsgame);
 
 		JMenuItem mntmSummary = new JMenuItem("Summary");
+		mntmSummary.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(frmCrapsAGame, "Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
+						+ totalWins + "/nAverage Rolls Per Game: " + avgNumRolls, "Average Rolls", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnGameStats.add(mntmSummary);
 
 		JMenu mnHelp = new JMenu("Help");
@@ -362,8 +401,17 @@ public class CrapsGUI
 				}
 				else if (reply == JOptionPane.NO_OPTION)
 				{
+					displayStats();
 					System.exit(0);
 				}
+			}
+
+			private void displayStats()
+			{
+				JOptionPane.showMessageDialog(frmCrapsAGame,
+						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
+								+ totalWins + "\nAverage Rolls Per Game: " + avgNumRolls,
+						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
 
 			private void reset()
@@ -385,6 +433,7 @@ public class CrapsGUI
 				die1ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 				die2ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 				sumImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
+				totalGames++;
 			}
 
 			private void keepPlayingPoint(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt,
@@ -396,7 +445,7 @@ public class CrapsGUI
 			private void keepPlaying(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt, int isPointRoll)
 			{
 				point = sum;
-				btnComeOutRoll.setText("Point Role");
+				btnComeOutRoll.setText("Point Roll");
 				winLoseLbl.setText("Point: " + point);
 				winLoseLbl.setForeground(Color.DARK_GRAY);
 				gameStatusTxt.setText("Continue");
@@ -419,6 +468,7 @@ public class CrapsGUI
 				winLoseLbl.setForeground(Color.GREEN);
 				gameStatusTxt.setText("Win");
 				isPointRoll = 0;
+				totalWins++;
 			}
 		});
 		btnComeOutRoll.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
