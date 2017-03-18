@@ -25,6 +25,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
@@ -297,7 +298,19 @@ public class CrapsGUI
 
 			private void prompt()
 			{
-				
+				int reply = JOptionPane.showConfirmDialog(frmCrapsAGame, "Would you like to play again?");
+				if (reply == JOptionPane.YES_OPTION)
+			    {
+					CrapsGUI.main(null);
+			    }
+				else if(reply == JOptionPane.CANCEL_OPTION)
+				{
+					//do nothing
+				}
+				else if(reply == JOptionPane.NO_OPTION)
+				{
+					System.exit(0);
+				}
 			}
 
 			private void keepPlayingPoint(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt,
@@ -327,7 +340,7 @@ public class CrapsGUI
 
 			private void win(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt, int isPointRoll)
 			{
-				btnComeOutRoll.setText("New Come Out Roll");
+				btnComeOutRoll.setText("Come Out Roll");
 				winLoseLbl.setText("WINNER!");
 				winLoseLbl.setForeground(Color.GREEN);
 				gameStatusTxt.setText("Win");
@@ -338,105 +351,4 @@ public class CrapsGUI
 		btnComeOutRoll.setBounds(445, 156, 150, 44);
 		frmCrapsAGame.getContentPane().add(btnComeOutRoll);
 	}
-
-	public JLabel getLblDie()
-	{
-		return lblDie;
-	}
-
-	public void setLblDie(JLabel lblDie)
-	{
-		this.lblDie = lblDie;
-	}
-
-	public JLabel getLblDie2()
-	{
-		return lblDie2;
-	}
-
-	public void setLblDie2(JLabel lblDie2)
-	{
-		this.lblDie2 = lblDie2;
-	}
-
-	public JLabel getLblSum()
-	{
-		return lblSum;
-	}
-
-	public void setLblSum(JLabel lblSum)
-	{
-		this.lblSum = lblSum;
-	}
-
-	public JLabel getDie1ImageLbl()
-	{
-		return die1ImageLbl;
-	}
-
-	public void setDie1ImageLbl(JLabel die1ImageLbl)
-	{
-		this.die1ImageLbl = die1ImageLbl;
-	}
-
-	public JLabel getDie2ImageLbl()
-	{
-		return die2ImageLbl;
-	}
-
-	public void setDie2ImageLbl(JLabel die2ImageLbl)
-	{
-		this.die2ImageLbl = die2ImageLbl;
-	}
-
-	public JLabel getSumImageLbl()
-	{
-		return sumImageLbl;
-	}
-
-	public void setSumImageLbl(JLabel sumImageLbl)
-	{
-		this.sumImageLbl = sumImageLbl;
-	}
-
-	public JLabel getShooterNameLbl()
-	{
-		return shooterNameLbl;
-	}
-
-	public void setShooterNameLbl(JLabel shooterNameLbl)
-	{
-		this.shooterNameLbl = shooterNameLbl;
-	}
-
-	public JButton getBtnComeOutRoll()
-	{
-		return btnComeOutRoll;
-	}
-
-	public void setBtnComeOutRoll(JButton btnComeOutRoll)
-	{
-		this.btnComeOutRoll = btnComeOutRoll;
-	}
-
-	public JLabel getGameStatusTxt()
-	{
-		return gameStatusTxt;
-	}
-
-	public void setGameStatusTxt(JLabel gameStatusTxt)
-	{
-		this.gameStatusTxt = gameStatusTxt;
-	}
-
-	public void setFrmCrapsAGame(JFrame frmCrapsAGame)
-	{
-		this.frmCrapsAGame = frmCrapsAGame;
-	}
-
-	public JFrame getFrmCrapsAGame()
-	{
-		return frmCrapsAGame;
-	}
-
 }
