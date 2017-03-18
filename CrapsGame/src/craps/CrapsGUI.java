@@ -34,6 +34,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 /**
@@ -54,6 +55,13 @@ public class CrapsGUI
 	private JLabel shooterNameLbl;
 	private JLabel gameStatusTxt;
 	private JButton btnComeOutRoll;
+	private Die die1 = new Die();
+	private Die die2 = new Die();
+	private int sum;
+	private int point;
+	private int isPointRoll = 0;
+	private int numRolls = 0;
+	private ArrayList<Integer> rolls = new ArrayList<Integer>();
 
 	/**
 	 * Launch the application.
@@ -204,47 +212,126 @@ public class CrapsGUI
 		gameStatusTxt.setBackground(Color.WHITE);
 		gameStatusTxt.setBounds(136, 293, 78, 24);
 		frmCrapsAGame.getContentPane().add(gameStatusTxt);
-		
+
 		JLabel winLoseLbl = new JLabel("");
+		winLoseLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		winLoseLbl.setForeground(Color.GREEN);
-		winLoseLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 90));
-		winLoseLbl.setBounds(373, 212, 300, 137);
+		winLoseLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 70));
+		winLoseLbl.setBounds(347, 212, 351, 137);
 		frmCrapsAGame.getContentPane().add(winLoseLbl);
-		
+
 		btnComeOutRoll = new JButton("Come Out Roll");
 		btnComeOutRoll.addActionListener(new ActionListener()
 		{
+			private int rollDie(Die die)
+			{
+				die.roll();
+				return die.getValue();				
+			}
+			
+			private void updateDieOnGUI(JLabel dieLabel, int dieValue)
+			{
+				dieLabel.setIcon(null);
+				dieLabel.setText("" + dieValue);
+			}
+			
 			public void actionPerformed(ActionEvent e)
 			{
-				craps.play();
 				
-				// make die one roll value appear
-				die1ImageLbl.setIcon(null);
-				die1ImageLbl.setText("" + craps.getDie1().getValue());
+				// roll 'em
+				int die1Value = rollDie(die1);
+				int die2Value = rollDie(die2);
+
+				// update die roll value appear on GUI
+				updateDieOnGUI(die1ImageLbl, die1Value);
+				updateDieOnGUI(die2ImageLbl, die2Value);
+
+				// make sum of both rolls appear on GUI
+				sum = die1Value + die2Value;
+				updateDieOnGUI(sumImageLbl, sum);
 				
-				// make die two roll value appear
-				die2ImageLbl.setIcon(null);
-				die2ImageLbl.setText("" + craps.getDie2().getValue());
-				
-				// make sum value appear
-				int die1 = craps.getDie1().getValue();
-				int die2 = craps.getDie2().getValue();
-				int sum = die1 + die2;
-				sumImageLbl.setIcon(null);
-				sumImageLbl.setText("" + sum);
-				
-				if(sum != 7 && sum != 11)
+				switch(isPointRoll)
 				{
-					btnComeOutRoll.setText("Point Role");
-					int point = sum;
-//					TODO:
+					case 0:
+					{
+						if(sum == 7 || sum == 11)
+						{
+							win(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
+							numRolls++;
+							prompt();
+						}
+						else if(sum == 2 || sum == 3 || sum == 12)
+						{
+							lose(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
+							numRolls++;
+							prompt();
+						}
+						else
+						{
+							keepPlaying(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
+							numRolls++;
+						}
+					}
+					case 1:
+					{
+						if(sum == point)
+						{
+							win(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
+							numRolls++;
+							prompt();
+						}
+						else if(sum == 7)
+						{
+							lose(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
+							numRolls++;
+							prompt();
+						}
+						else
+						{
+							keepPlayingPoint(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
+							numRolls++;
+						}
+					}
 				}
-				else
-				{
-					btnComeOutRoll.setText("Come Out Roll");
-					winLoseLbl.setText("WINNER!");
-					winLoseLbl.setForeground(Color.GREEN);
-				}
+			}
+
+			private void prompt()
+			{
+				
+			}
+
+			private void keepPlayingPoint(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt,
+					int isPointRoll)
+			{
+//				TODO:
+			}
+
+			private void keepPlaying(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt, int isPointRoll)
+			{
+				point = sum;
+				btnComeOutRoll.setText("Point Role");
+				winLoseLbl.setText("Point: " + sum);
+				winLoseLbl.setForeground(Color.DARK_GRAY);
+				gameStatusTxt.setText("Continue");
+				isPointRoll = 1;
+			}
+
+			private void lose(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt, int isPointRoll)
+			{
+				btnComeOutRoll.setText("Play again");
+				winLoseLbl.setText("You Lose.");
+				winLoseLbl.setForeground(Color.RED);
+				gameStatusTxt.setText("Lost");
+				isPointRoll = 0;
+			}
+
+			private void win(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt, int isPointRoll)
+			{
+				btnComeOutRoll.setText("New Come Out Roll");
+				winLoseLbl.setText("WINNER!");
+				winLoseLbl.setForeground(Color.GREEN);
+				gameStatusTxt.setText("Win");
+				isPointRoll = 0;
 			}
 		});
 		btnComeOutRoll.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
@@ -351,5 +438,5 @@ public class CrapsGUI
 	{
 		return frmCrapsAGame;
 	}
-	
+
 }
