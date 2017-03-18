@@ -63,6 +63,7 @@ public class CrapsGUI
 	private int isPointRoll = 0;
 	private int numRolls = 0;
 	private ArrayList<Integer> rolls = new ArrayList<Integer>();
+	private String name;
 
 	/**
 	 * Launch the application.
@@ -188,13 +189,9 @@ public class CrapsGUI
 		sumImageLbl.setBounds(196, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(sumImageLbl);
 
-		// DO NOT DELETE - TEMPORARILY COMMENTED OUT
-		// String name = JOptionPane.showInputDialog(frmCrapsAGame, "Please
-		// enter your name:",
-		// "Shooter's Name", JOptionPane.QUESTION_MESSAGE);
-		//
-		// JLabel lblNewLabel_1 = new JLabel(name);
-		shooterNameLbl = new JLabel("Shooter"); // temp
+		name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:", "Shooter's Name",
+				JOptionPane.QUESTION_MESSAGE);
+		shooterNameLbl = new JLabel(name);
 		shooterNameLbl.setForeground(Color.BLUE);
 		shooterNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		shooterNameLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 54));
@@ -227,18 +224,18 @@ public class CrapsGUI
 			private int rollDie(Die die)
 			{
 				die.roll();
-				return die.getValue();				
+				return die.getValue();
 			}
-			
+
 			private void updateDieOnGUI(JLabel dieLabel, int dieValue)
 			{
 				dieLabel.setIcon(null);
 				dieLabel.setText("" + dieValue);
 			}
-			
+
 			public void actionPerformed(ActionEvent e)
 			{
-				
+
 				// roll 'em
 				int die1Value = rollDie(die1);
 				int die2Value = rollDie(die2);
@@ -250,47 +247,54 @@ public class CrapsGUI
 				// make sum of both rolls appear on GUI
 				sum = die1Value + die2Value;
 				updateDieOnGUI(sumImageLbl, sum);
-				
-				switch(isPointRoll)
+
+				// logic
+				switch (isPointRoll)
 				{
 					case 0:
 					{
-						if(sum == 7 || sum == 11)
+						if (sum == 7 || sum == 11)
 						{
 							win(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
 							numRolls++;
 							prompt();
+							break;
 						}
-						else if(sum == 2 || sum == 3 || sum == 12)
+						else if (sum == 2 || sum == 3 || sum == 12)
 						{
 							lose(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
 							numRolls++;
 							prompt();
+							break;
 						}
 						else
 						{
 							keepPlaying(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
 							numRolls++;
+							break;
 						}
 					}
 					case 1:
 					{
-						if(sum == point)
+						if (sum == point)
 						{
 							win(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
 							numRolls++;
 							prompt();
+							break;
 						}
-						else if(sum == 7)
+						else if (sum == 7)
 						{
 							lose(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
 							numRolls++;
 							prompt();
+							break;
 						}
 						else
 						{
 							keepPlayingPoint(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
 							numRolls++;
+							break;
 						}
 					}
 				}
@@ -300,14 +304,14 @@ public class CrapsGUI
 			{
 				int reply = JOptionPane.showConfirmDialog(frmCrapsAGame, "Would you like to play again?");
 				if (reply == JOptionPane.YES_OPTION)
-			    {
-					reset();
-			    }
-				else if(reply == JOptionPane.CANCEL_OPTION)
 				{
-					//do nothing
+					reset();
 				}
-				else if(reply == JOptionPane.NO_OPTION)
+				else if (reply == JOptionPane.CANCEL_OPTION)
+				{
+					// do nothing
+				}
+				else if (reply == JOptionPane.NO_OPTION)
 				{
 					System.exit(0);
 				}
@@ -328,14 +332,14 @@ public class CrapsGUI
 			private void keepPlayingPoint(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt,
 					int isPointRoll)
 			{
-//				TODO:
+				// Do Nothing
 			}
 
 			private void keepPlaying(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt, int isPointRoll)
 			{
 				point = sum;
 				btnComeOutRoll.setText("Point Role");
-				winLoseLbl.setText("Point: " + sum);
+				winLoseLbl.setText("Point: " + point);
 				winLoseLbl.setForeground(Color.DARK_GRAY);
 				gameStatusTxt.setText("Continue");
 				isPointRoll = 1;
@@ -362,5 +366,15 @@ public class CrapsGUI
 		btnComeOutRoll.setFont(new Font("Noto Sans UI", Font.BOLD, 15));
 		btnComeOutRoll.setBounds(445, 156, 150, 44);
 		frmCrapsAGame.getContentPane().add(btnComeOutRoll);
+	}
+
+	public int getNumRolls()
+	{
+		return numRolls;
+	}
+
+	public ArrayList<Integer> getRolls()
+	{
+		return rolls;
 	}
 }
