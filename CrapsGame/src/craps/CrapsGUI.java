@@ -251,6 +251,7 @@ public class CrapsGUI
 				
 				// add to roll value array
 				rolls.add(sum);
+				numRolls++;
 
 				// logic
 				switch (isPointRoll)
@@ -260,21 +261,19 @@ public class CrapsGUI
 						if (sum == 7 || sum == 11)
 						{
 							win(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
-							numRolls++;
 							prompt();
 							break;
 						}
 						else if (sum == 2 || sum == 3 || sum == 12)
 						{
 							lose(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
-							numRolls++;
 							prompt();
 							break;
 						}
 						else
 						{
 							keepPlaying(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
-							numRolls++;
+							isPointRoll = 1;
 							break;
 						}
 					}
@@ -283,21 +282,18 @@ public class CrapsGUI
 						if (sum == point)
 						{
 							win(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
-							numRolls++;
 							prompt();
 							break;
 						}
 						else if (sum == 7)
 						{
 							lose(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
-							numRolls++;
 							prompt();
 							break;
 						}
 						else
 						{
 							keepPlayingPoint(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
-							numRolls++;
 							break;
 						}
 					}
