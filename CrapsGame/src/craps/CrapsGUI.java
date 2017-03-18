@@ -189,9 +189,10 @@ public class CrapsGUI
 		sumImageLbl.setBounds(196, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(sumImageLbl);
 
-		name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:", "Shooter's Name",
-				JOptionPane.QUESTION_MESSAGE);
-		shooterNameLbl = new JLabel(name);
+		shooterNameLbl = new JLabel("Shooter");
+//		name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:", "Shooter's Name",
+//				JOptionPane.QUESTION_MESSAGE);
+//		shooterNameLbl = new JLabel(name);
 		shooterNameLbl.setForeground(Color.BLUE);
 		shooterNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		shooterNameLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 54));
@@ -239,7 +240,7 @@ public class CrapsGUI
 				// roll 'em
 				int die1Value = rollDie(die1);
 				int die2Value = rollDie(die2);
-
+				
 				// update die roll value appear on GUI
 				updateDieOnGUI(die1ImageLbl, die1Value);
 				updateDieOnGUI(die2ImageLbl, die2Value);
@@ -247,6 +248,9 @@ public class CrapsGUI
 				// make sum of both rolls appear on GUI
 				sum = die1Value + die2Value;
 				updateDieOnGUI(sumImageLbl, sum);
+				
+				// add to roll value array
+				rolls.add(sum);
 
 				// logic
 				switch (isPointRoll)
@@ -319,6 +323,7 @@ public class CrapsGUI
 
 			private void reset()
 			{
+				//reset init values
 				sum = 0;
 				point = 0;
 				isPointRoll = 0;
@@ -327,6 +332,11 @@ public class CrapsGUI
 				winLoseLbl.setText("");
 				gameStatusTxt.setText("");
 				isPointRoll = 0;
+				
+				// reset die image labels
+				die1ImageLbl.setText("");
+				die2ImageLbl.setText("");
+				sumImageLbl.setText("");
 				die1ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 				die2ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 				sumImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
