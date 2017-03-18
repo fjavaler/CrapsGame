@@ -45,7 +45,6 @@ import java.awt.event.ActionEvent;
 public class CrapsGUI
 {
 
-	private Craps craps = new Craps();
 	private JFrame frmCrapsAGame;
 	private JLabel lblDie;
 	private JLabel lblDie2;
