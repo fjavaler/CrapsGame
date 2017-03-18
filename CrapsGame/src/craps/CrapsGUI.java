@@ -53,6 +53,7 @@ public class CrapsGUI
 	private JLabel die2ImageLbl;
 	private JLabel sumImageLbl;
 	private JLabel shooterNameLbl;
+	private JLabel winLoseLbl;
 	private JLabel gameStatusTxt;
 	private JButton btnComeOutRoll;
 	private Die die1 = new Die();
@@ -120,12 +121,40 @@ public class CrapsGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				// Game stats
+				displayStats();
 				// name prompt
-				namePrompt();
+				namePromptAndUpdate();
 				// reset rolls
-				
+				rolls = new ArrayList<Integer>();
 				// reset game
-				// start game?
+				reset();
+			}
+
+			private void displayStats()
+			{
+				
+			}
+
+			private void reset()
+			{
+				// reset init values
+				sum = 0;
+				point = 0;
+				isPointRoll = 0;
+				numRolls = 0;
+				btnComeOutRoll.setText("Come Out Roll");
+				winLoseLbl.setText("");
+				gameStatusTxt.setText("");
+				isPointRoll = 0;
+
+				// reset die image labels
+				die1ImageLbl.setText("");
+				die2ImageLbl.setText("");
+				sumImageLbl.setText("");
+				die1ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
+				die2ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
+				sumImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 			}
 		});
 		mnFile.add(mntmSave);
@@ -232,7 +261,7 @@ public class CrapsGUI
 		gameStatusTxt.setBounds(136, 293, 78, 24);
 		frmCrapsAGame.getContentPane().add(gameStatusTxt);
 
-		JLabel winLoseLbl = new JLabel("");
+		winLoseLbl = new JLabel("");
 		winLoseLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		winLoseLbl.setForeground(Color.GREEN);
 		winLoseLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 70));
@@ -397,7 +426,7 @@ public class CrapsGUI
 		frmCrapsAGame.getContentPane().add(btnComeOutRoll);
 	}
 
-	private void namePrompt()
+	private void namePromptAndUpdate()
 	{
 		name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:", "Shooter's Name",
 				JOptionPane.QUESTION_MESSAGE);
