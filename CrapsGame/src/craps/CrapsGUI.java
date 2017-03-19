@@ -63,7 +63,7 @@ public class CrapsGUI
 	private int isPointRoll = 0;
 	private int totalRolls = 0;
 	private String name;
-	private int totalGames = 1;
+	private int totalGames = 0;
 	private int totalWins = 0;
 	private double avgNumRollsForShooter = 0;
 
@@ -149,9 +149,8 @@ public class CrapsGUI
 				winLoseLbl.setText("");
 				gameStatusTxt.setText("");
 				isPointRoll = 0;
-				totalGames = 1;
+				totalGames = 0;
 				totalWins = 0;
-				totalRolls = 0;
 				
 				// reset die image labels
 				die1ImageLbl.setText("");
@@ -352,7 +351,13 @@ public class CrapsGUI
 				// roll 'em
 				int die1Value = rollDie(die1);
 				int die2Value = rollDie(die2);
-
+				totalRolls++;
+				if(btnComeOutRoll.getText().equals("Come Out Roll"))
+				{
+					totalGames++;
+				}
+				avgNumRollsForShooter = totalRolls/totalGames;
+				
 				// update die roll value appear on GUI
 				updateDieOnGUI(die1ImageLbl, die1Value);
 				updateDieOnGUI(die2ImageLbl, die2Value);
@@ -360,7 +365,6 @@ public class CrapsGUI
 				// make sum of both rolls appear on GUI
 				sum = die1Value + die2Value;
 				updateDieOnGUI(sumImageLbl, sum);
-				totalRolls++;
 
 				// logic
 				switch (isPointRoll)
@@ -415,7 +419,6 @@ public class CrapsGUI
 				if (reply == JOptionPane.YES_OPTION)
 				{
 					reset();
-					totalGames++;
 				}
 				else if (reply == JOptionPane.CANCEL_OPTION)
 				{
@@ -438,7 +441,6 @@ public class CrapsGUI
 							"Would you like to play as a new shooter?");
 					if (response == JOptionPane.YES_OPTION)
 					{
-						totalRolls = 0;
 						totalWins = 0;
 						mntmSave.doClick();
 					}
@@ -526,6 +528,7 @@ public class CrapsGUI
 			System.exit(0);
 		}
 		shooterNameLbl.setText(name);
-		totalGames++;
+		totalRolls = 0;
+		avgNumRollsForShooter = 0;
 	}
 }
