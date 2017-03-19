@@ -1,3 +1,28 @@
+/********************************************************
+ *  
+ *  Project :  Craps Game
+ *  File    :  Die.java
+ *  Name    :  Frederick Javalera
+ *  Date    :  Created: 3/18/2017 (Due: 3/13/2017)
+ *
+ *  Description : (Narrative description, not code)
+ *
+ *    1) What is the purpose of the code; what problem does the code solve.
+ *    This code is a simulation of a die. It is used as the dice being roled
+ *    in CrapsGUI.
+ *
+ *    2) What data-structures are used.
+ *    None.
+ *
+ *    3) What algorithms, techniques, etc. are used in implementing the data structures.
+ *	  A Random number generator was used to randomize the die's rolls.
+ *
+ *    4) What methods are implemented (optional).
+ *    A Main method, an initialize method, and several helper classes.
+ *
+ *  Changes :  <Description|date of modifications>
+ *
+ ********************************************************/
 package craps;
 
 import java.util.Random;
