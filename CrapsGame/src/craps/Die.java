@@ -18,7 +18,7 @@
  *	  A Random number generator was used to randomize the die's rolls.
  *
  *    4) What methods are implemented (optional).
- *    A Main method, an initialize method, and several helper classes.
+ *    Role, getValue, and toString
  *
  *  Changes :  <Description|date of modifications>
  *
@@ -42,18 +42,48 @@ class Die
 		r = new Random();
 	}
 
-	// class methods
+	/****************************************************
+	 * Method     : roll
+	 *
+	 * Purpose    : The roll method simulates a die being rolled.
+	 *
+	 * Parameters : None.
+	 *
+	 * Returns    : This method does not return a value.
+	 *
+	 ****************************************************/
 	public void roll()
 	{
 		dieValue_ = MIN_DIE_VALUE + r.nextInt(MAX_DIE_VALUE);
 		// dieValue_ = (int)(MIN_DIE_VALUE + Math.random() * MAX_DIE_VALUE);
 	}
 
+	/****************************************************
+	 * Method     : getValue
+	 *
+	 * Purpose    : The getValue method returns the die's current value
+	 * (1-6)
+	 *
+	 * Parameters : none.
+	 *
+	 * Returns    : This method return an int value of 1-6.
+	 *
+	 ****************************************************/
 	public int getValue()
 	{
 		return dieValue_;
 	}
 
+	/****************************************************
+	 * Method     : toString
+	 *
+	 * Purpose    : The toString method returns the dieValue as a string.
+	 *
+	 * Parameters : none.
+	 *
+	 * Returns    : This method returns the dieValue as a String.
+	 *
+	 ****************************************************/
 	@Override
 	public String toString()
 	{
