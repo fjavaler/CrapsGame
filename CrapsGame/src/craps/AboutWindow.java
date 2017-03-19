@@ -1,3 +1,28 @@
+/********************************************************
+ *  
+ *  Project :  Craps Game
+ *  File    :  AboutWindow.java
+ *  Name    :  Frederick Javalera
+ *  Date    :  Created: 3/18/2017 (Due: 3/13/2017)
+ *
+ *  Description : (Narrative description, not code)
+ *
+ *    1) What is the purpose of the code; what problem does the code solve.
+ *    This code represents the window displayed when a user clicks the about JMenu item
+ *    in CrapsGUI.
+ *
+ *    2) What data-structures are used.
+ *    A JFrame was used.
+ *
+ *    3) What algorithms, techniques, etc. are used in implementing the data structures.
+ *	  An initialize method to draw the components on to the JFrame.
+ *
+ *    4) What methods are implemented (optional).
+ *    A Main method, and an initialize method.
+ *
+ *  Changes :  <Description|date of modifications>
+ *
+ ********************************************************/
 package craps;
 
 import java.awt.EventQueue;
@@ -6,7 +31,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import java.awt.Color;
 import java.awt.Font;
 
 public class AboutWindow
