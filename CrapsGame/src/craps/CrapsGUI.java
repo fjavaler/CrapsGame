@@ -133,7 +133,7 @@ public class CrapsGUI
 			private void displayStats()
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
-						"Here are your stats for this session: " + "\nTotal Games: " + (totalGames-1) + "\nTotal Wins: "
+						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
 								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -184,7 +184,7 @@ public class CrapsGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JOptionPane.showMessageDialog(frmCrapsAGame, "Total Number of Games: " + (totalGames-1), "Total Games",
+				JOptionPane.showMessageDialog(frmCrapsAGame, "Total Number of Games: " + totalGames, "Total Games",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -219,7 +219,7 @@ public class CrapsGUI
 			public void actionPerformed(ActionEvent e)
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
-						"Here are your stats for this session: " + "\nTotal Games: " + (totalGames-1) + "\nTotal Wins: "
+						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
 								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
 						"Summary", JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -451,7 +451,7 @@ public class CrapsGUI
 			private void displayStats()
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
-						"Here are your stats for this session: " + "\nTotal Games: " + (totalGames-1) + "\nTotal Wins: "
+						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
 								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
