@@ -1,19 +1,25 @@
 /********************************************************
- * TODO: Document
- *  Project :  <Name of project|assignment>
- *  File    :  <Name of source code file>
- *  Name    :  <Name of programmer>
- *  Date    :  <Date created (project due date)>
+ *  
+ *  Project :  Craps Game
+ *  File    :  CrapGUI.java
+ *  Name    :  Frederick Javalera
+ *  Date    :  Created: 3/18/2017 (Due: 3/13/2017)
  *
  *  Description : (Narrative description, not code)
  *
  *    1) What is the purpose of the code; what problem does the code solve.
+ *    This code is the interface, controller, and model that allows the user
+ *    to play a game of craps.
  *
  *    2) What data-structures are used.
+ *    A JFrame was used.
  *
  *    3) What algorithms, techniques, etc. are used in implementing the data structures.
+ *	  lots of anonymous classes and actionEvents were used for when the user clicks on
+ *	  the game's buttons.
  *
  *    4) What methods are implemented (optional).
+ *    A Main method, an initialize method, and several helper classes.
  *
  *  Changes :  <Description|date of modifications>
  *
@@ -39,12 +45,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 
 /**
+ * This class represents the model, view, and controller for 
+ * a game of Craps.
  * 
  * @author Frederick Javalera
  */
 public class CrapsGUI
 {
 
+	//fields
 	private JFrame frmCrapsAGame;
 	private JLabel lblDie;
 	private JLabel lblDie2;
@@ -65,6 +74,7 @@ public class CrapsGUI
 	private String name;
 	private int totalGames = 0;
 	private int totalWins = 0;
+	// avg rolls per session
 	private double avgNumRollsForShooter = 0;
 
 	/**
@@ -123,14 +133,25 @@ public class CrapsGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				// Game stats
+				// displays game stats
 				displayStats();
-				// name prompt
+				// name prompt appears and gets current user name
 				namePromptAndUpdate();
-				// reset game
+				// resets values
 				reset();
 			}
 
+			/****************************************************
+			 * Method     : displayStats
+			 *
+			 * Purpose    : The displayStats method displays the current
+			 * users stats: totalGames, totalWins, and avgNumRollsForShooter
+			 *
+			 * Parameters : None
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			private void displayStats()
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
@@ -139,6 +160,17 @@ public class CrapsGUI
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
 
+			/****************************************************
+			 * Method     : reset
+			 *
+			 * Purpose    : the reset method resets all of the game's initial
+			 * values and images to their default values and images.
+			 *
+			 * Parameters : None.
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			private void reset()
 			{
 				// reset init values
@@ -333,18 +365,52 @@ public class CrapsGUI
 		btnComeOutRoll = new JButton("Come Out Roll");
 		btnComeOutRoll.addActionListener(new ActionListener()
 		{
+			/****************************************************
+			 * Method     : rollDie
+			 *
+			 * Purpose    : The rollDie method simulates the rolling of
+			 * a die.
+			 *
+			 * Parameters : die         - the "die" object to be rolled
+			 *
+			 * Returns    : This method returns the simulated die's int
+			 * value (1-6).
+			 *
+			 ****************************************************/
 			private int rollDie(Die die)
 			{
 				die.roll();
 				return die.getValue();
 			}
 
+			/****************************************************
+			 * Method     : updateDieOnGUI
+			 *
+			 * Purpose    : This method updates the icon on the die from
+			 * an image to the numbers rolled by the shooter on a die.
+			 *
+			 * Parameters : dieLabel           - the JLabel to be updated
+			 *              dieValue           - the value rolled on the die
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			private void updateDieOnGUI(JLabel dieLabel, int dieValue)
 			{
 				dieLabel.setIcon(null);
 				dieLabel.setText("" + dieValue);
 			}
 
+			/****************************************************
+			 * Method     : actionPerformed
+			 *
+			 * Purpose    : Detects when the die roll button is clicked.
+			 *
+			 * Parameters : e               - actionEvent to be detected.
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			public void actionPerformed(ActionEvent e)
 			{
 
@@ -366,7 +432,7 @@ public class CrapsGUI
 				sum = die1Value + die2Value;
 				updateDieOnGUI(sumImageLbl, sum);
 
-				// logic
+				// logic: isPointRoll = 0 is false, 1 is true.
 				switch (isPointRoll)
 				{
 					case 0:
@@ -404,15 +470,24 @@ public class CrapsGUI
 							prompt();
 							break;
 						}
-						else
-						{
-							keepPlayingPoint(btnComeOutRoll, winLoseLbl, gameStatusTxt, isPointRoll);
-							break;
-						}
 					}
 				}
 			}
 
+			/****************************************************
+			 * Method     : prompt
+			 *
+			 * Purpose    : The prompt method prompts the user asking if
+			 * they'd like to play again. If yes, resets values. If cancel 
+			 * pressed, re-prompts user every 5 seconds. If no, it asks if
+			 * there is a new shooter who would like to play. If so, starts
+			 * a new game and resets values for new user.
+			 *
+			 * Parameters : None
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			private void prompt()
 			{
 				int reply = JOptionPane.showConfirmDialog(frmCrapsAGame, "Would you like to play again?");
@@ -451,6 +526,17 @@ public class CrapsGUI
 				}
 			}
 
+			/****************************************************
+			 * Method     : displayStats
+			 *
+			 * Purpose    : The displayStats method displays the current users
+			 * stats.
+			 *
+			 * Parameters : None.
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			private void displayStats()
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
@@ -459,6 +545,17 @@ public class CrapsGUI
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
 
+			/****************************************************
+			 * Method     : reset
+			 *
+			 * Purpose    : the reset method resets all of the game's initial
+			 * values and images to their default values and images.
+			 *
+			 * Parameters : None.
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			private void reset()
 			{
 				// reset init values
@@ -479,12 +576,24 @@ public class CrapsGUI
 				sumImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 			}
 
-			private void keepPlayingPoint(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt,
-					int isPointRoll)
-			{
-				// Do Nothing
-			}
-
+			/****************************************************
+			 * Method     : keepPlaying
+			 *
+			 * Purpose    : The keepPlayingPoint method is used when the player
+			 * decides to keep playing and a point value is in play. This method
+			 * does nothing when called.
+			 *
+			 * Parameters : btnComeOutRoll - The JButton whose text is modified 
+			 * indicating a point roll.
+			 *              winLoseLbl     - A label whose text is modified.
+			 *              gameStatusTxt  - A label whose text is modified.
+			 *              isPointRoll    - An int that acts as a boolean, 0
+			 *              indicates false, 1 indicates true. Used later in a
+			 *              switch.
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			private void keepPlaying(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt, int isPointRoll)
 			{
 				point = sum;
@@ -495,6 +604,22 @@ public class CrapsGUI
 				isPointRoll = 1;
 			}
 
+			/****************************************************
+			 * Method     : lose
+			 *
+			 * Purpose    : The lose method changes all of the GUI components
+			 * necessary to indicate that the player lost.
+			 *
+			 * Parameters : btnComeOutRoll - an array of integers
+			 *              winLoseLbl     - A label whose text is modified.
+			 *              gameStatusTxt  - A label whose text is modified.
+			 *              isPointRoll    - An int that acts as a boolean, 0
+			 *              indicates false, 1 indicates true. Used later in a
+			 *              switch.
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			private void lose(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt, int isPointRoll)
 			{
 				btnComeOutRoll.setText("Play again");
@@ -504,6 +629,22 @@ public class CrapsGUI
 				isPointRoll = 0;
 			}
 
+			/****************************************************
+			 * Method     : win
+			 *
+			 * Purpose    : The lose method changes all of the GUI components
+			 * necessary to indicate that the player won.
+			 *
+			 * Parameters : btnComeOutRoll - an array of integers
+			 *              winLoseLbl     - A label whose text is modified.
+			 *              gameStatusTxt  - A label whose text is modified.
+			 *              isPointRoll    - An int that acts as a boolean, 0
+			 *              indicates false, 1 indicates true. Used later in a
+			 *              switch.
+			 *
+			 * Returns    : This method does not return a value.
+			 *
+			 ****************************************************/
 			private void win(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt, int isPointRoll)
 			{
 				btnComeOutRoll.setText("Come Out Roll");
@@ -519,6 +660,17 @@ public class CrapsGUI
 		frmCrapsAGame.getContentPane().add(btnComeOutRoll);
 	}
 
+	/****************************************************
+	 * Method     : namePromptAndUpdate
+	 *
+	 * Purpose    : The namePromptAndUpdate method prompts the user
+	 * for their name and updates their name on the GUI.
+	 *
+	 * Parameters : None.
+	 *
+	 * Returns    : This method does not return a value.
+	 *
+	 ****************************************************/
 	private void namePromptAndUpdate()
 	{
 		name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:", "Shooter's Name",
@@ -531,4 +683,5 @@ public class CrapsGUI
 		totalRolls = 0;
 		avgNumRollsForShooter = 0;
 	}
+	
 }
