@@ -61,10 +61,11 @@ public class CrapsGUI
 	private int sum = 0;
 	private int point = 0;
 	private int isPointRoll = 0;
-	private int numRolls = 0;
+	private int totalRolls = 0;
 	private String name;
 	private int totalGames = 1;
 	private int totalWins = 0;
+	private double avgNumRollsForShooter = 0;
 
 	/**
 	 * Launch the application.
@@ -134,7 +135,7 @@ public class CrapsGUI
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
 						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
-								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
+								+ totalWins + "\nAverage Rolls Per Game: " + avgNumRollsForShooter,
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
 
@@ -150,7 +151,7 @@ public class CrapsGUI
 				isPointRoll = 0;
 				totalGames = 1;
 				totalWins = 0;
-				numRolls = 0;
+				totalRolls = 0;
 				
 				// reset die image labels
 				die1ImageLbl.setText("");
@@ -207,7 +208,7 @@ public class CrapsGUI
 			public void actionPerformed(ActionEvent e)
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
-						"Average Number of Rolls per Game: " + numRolls / totalGames, "Average Rolls",
+						"Average Number of Rolls per Game: " + avgNumRollsForShooter, "Average Rolls",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -220,7 +221,7 @@ public class CrapsGUI
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
 						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
-								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
+								+ totalWins + "\nAverage Rolls Per Game: " + avgNumRollsForShooter,
 						"Summary", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -359,7 +360,7 @@ public class CrapsGUI
 				// make sum of both rolls appear on GUI
 				sum = die1Value + die2Value;
 				updateDieOnGUI(sumImageLbl, sum);
-				numRolls++;
+				totalRolls++;
 
 				// logic
 				switch (isPointRoll)
@@ -437,7 +438,7 @@ public class CrapsGUI
 							"Would you like to play as a new shooter?");
 					if (response == JOptionPane.YES_OPTION)
 					{
-						numRolls = 0;
+						totalRolls = 0;
 						totalWins = 0;
 						mntmSave.doClick();
 					}
@@ -452,7 +453,7 @@ public class CrapsGUI
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
 						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
-								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
+								+ totalWins + "\nAverage Rolls Per Game: " + avgNumRollsForShooter,
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
 
