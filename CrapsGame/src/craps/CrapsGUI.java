@@ -1,5 +1,5 @@
 /********************************************************
- * TODO:
+ * TODO: Document
  *  Project :  <Name of project|assignment>
  *  File    :  <Name of source code file>
  *  Name    :  <Name of programmer>
@@ -35,7 +35,6 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 
@@ -53,7 +52,7 @@ public class CrapsGUI
 	private JLabel die1ImageLbl;
 	private JLabel die2ImageLbl;
 	private JLabel sumImageLbl;
-	private JLabel shooterNameLbl;
+	private JLabel shooterNameLbl = new JLabel();
 	private JLabel winLoseLbl;
 	private JLabel gameStatusTxt;
 	private JButton btnComeOutRoll;
@@ -63,7 +62,6 @@ public class CrapsGUI
 	private int point = 0;
 	private int isPointRoll = 0;
 	private int numRolls = 0;
-	private ArrayList<Integer> rolls = new ArrayList<Integer>();
 	private String name;
 	private int totalGames = 1;
 	private int totalWins = 0;
@@ -128,8 +126,6 @@ public class CrapsGUI
 				displayStats();
 				// name prompt
 				namePromptAndUpdate();
-				// reset rolls
-				rolls = new ArrayList<Integer>();
 				// reset game
 				reset();
 			}
@@ -137,7 +133,7 @@ public class CrapsGUI
 			private void displayStats()
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
-						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
+						"Here are your stats for this session: " + "\nTotal Games: " + (totalGames-1) + "\nTotal Wins: "
 								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -148,12 +144,14 @@ public class CrapsGUI
 				sum = 0;
 				point = 0;
 				isPointRoll = 0;
-				numRolls = 0;
 				btnComeOutRoll.setText("Come Out Roll");
 				winLoseLbl.setText("");
 				gameStatusTxt.setText("");
 				isPointRoll = 0;
-
+				totalGames = 1;
+				totalWins = 0;
+				numRolls = 0;
+				
 				// reset die image labels
 				die1ImageLbl.setText("");
 				die2ImageLbl.setText("");
@@ -186,7 +184,7 @@ public class CrapsGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JOptionPane.showMessageDialog(frmCrapsAGame, "Total Number of Games: " + totalGames, "Total Games",
+				JOptionPane.showMessageDialog(frmCrapsAGame, "Total Number of Games: " + (totalGames-1), "Total Games",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -221,7 +219,7 @@ public class CrapsGUI
 			public void actionPerformed(ActionEvent e)
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
-						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
+						"Here are your stats for this session: " + "\nTotal Games: " + (totalGames-1) + "\nTotal Wins: "
 								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
 						"Summary", JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -240,7 +238,10 @@ public class CrapsGUI
 			public void actionPerformed(ActionEvent e)
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
-						"Set up\n    Select File | New Shooter\n        Enter player's name\n\nPlay\n    Click the Come-out Roll button\n        Win if you roll 7 or 11\n        Lose if you roll 2, 3, or 12\n        Otherwise set point value and continue\n    Point roll\n        Win if you roll your point value\n        Lose if you roll7\n        Otherwise continue until you win or lose",
+						"Set up\n    Select File | New Shooter\n        Enter player's name\n\nPlay\n    Click the Come-out Roll button\n        "
+								+ "Win if you roll 7 or 11\n        Lose if you roll 2, 3, or 12\n        Otherwise set point value and continue\n    "
+								+ "Point roll\n        Win if you roll your point value\n        Lose if you roll7\n        Otherwise continue until you "
+								+ "win or lose",
 						"How To Play Craps", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -254,7 +255,7 @@ public class CrapsGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				
+				AboutWindow.main(null);
 			}
 		});
 		mnHelp.add(mntmAbout);
@@ -302,12 +303,7 @@ public class CrapsGUI
 		sumImageLbl.setBounds(196, 197, 60, 60);
 		frmCrapsAGame.getContentPane().add(sumImageLbl);
 
-		shooterNameLbl = new JLabel("Shooter");
-		// namePrompt();
-		// name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your
-		// name:", "Shooter's Name",
-		// JOptionPane.QUESTION_MESSAGE);
-		// shooterNameLbl = new JLabel(name);
+		namePromptAndUpdate();
 		shooterNameLbl.setForeground(Color.BLUE);
 		shooterNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		shooterNameLbl.setFont(new Font("Noto Sans UI", Font.BOLD, 54));
@@ -363,9 +359,6 @@ public class CrapsGUI
 				// make sum of both rolls appear on GUI
 				sum = die1Value + die2Value;
 				updateDieOnGUI(sumImageLbl, sum);
-
-				// add to roll value array
-				rolls.add(sum);
 				numRolls++;
 
 				// logic
@@ -421,6 +414,7 @@ public class CrapsGUI
 				if (reply == JOptionPane.YES_OPTION)
 				{
 					reset();
+					totalGames++;
 				}
 				else if (reply == JOptionPane.CANCEL_OPTION)
 				{
@@ -439,15 +433,25 @@ public class CrapsGUI
 				}
 				else if (reply == JOptionPane.NO_OPTION)
 				{
-					displayStats();
-					System.exit(0);
+					int response = JOptionPane.showConfirmDialog(frmCrapsAGame,
+							"Would you like to play as a new shooter?");
+					if (response == JOptionPane.YES_OPTION)
+					{
+						numRolls = 0;
+						totalWins = 0;
+						mntmSave.doClick();
+					}
+					else
+					{
+						displayStats();
+					}
 				}
 			}
 
 			private void displayStats()
 			{
 				JOptionPane.showMessageDialog(frmCrapsAGame,
-						"Here are your stats for this session: " + "\nTotal Games: " + totalGames + "\nTotal Wins: "
+						"Here are your stats for this session: " + "\nTotal Games: " + (totalGames-1) + "\nTotal Wins: "
 								+ totalWins + "\nAverage Rolls Per Game: " + numRolls / totalGames,
 						"Game Stats", JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -458,7 +462,6 @@ public class CrapsGUI
 				sum = 0;
 				point = 0;
 				isPointRoll = 0;
-				numRolls = 0;
 				btnComeOutRoll.setText("Come Out Roll");
 				winLoseLbl.setText("");
 				gameStatusTxt.setText("");
@@ -471,7 +474,6 @@ public class CrapsGUI
 				die1ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 				die2ImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
 				sumImageLbl.setIcon(new ImageIcon(CrapsGUI.class.getResource("/questionMark.png")));
-				totalGames++;
 			}
 
 			private void keepPlayingPoint(JButton btnComeOutRoll, JLabel winLoseLbl, JLabel gameStatusTxt,
@@ -518,16 +520,11 @@ public class CrapsGUI
 	{
 		name = JOptionPane.showInputDialog(frmCrapsAGame, "Please enter your name:", "Shooter's Name",
 				JOptionPane.QUESTION_MESSAGE);
-		shooterNameLbl = new JLabel(name);
-	}
-
-	public int getNumRolls()
-	{
-		return numRolls;
-	}
-
-	public ArrayList<Integer> getRolls()
-	{
-		return rolls;
+		if(name == null)
+		{
+			System.exit(0);
+		}
+		shooterNameLbl.setText(name);
+		totalGames++;
 	}
 }
