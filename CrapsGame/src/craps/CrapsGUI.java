@@ -27,13 +27,11 @@
 package craps;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-
 import java.awt.Font;
 import javax.swing.JMenu;
 import javax.swing.JLabel;
@@ -117,7 +115,7 @@ public class CrapsGUI
 		frmCrapsAGame.setBackground(Color.WHITE);
 		frmCrapsAGame.getContentPane().setFont(new Font("Noto Sans UI", Font.PLAIN, 15));
 		frmCrapsAGame.setTitle("Craps - A Game of Chance and Skill!");
-		frmCrapsAGame.setBounds(100, 100, 750, 400);
+		frmCrapsAGame.setBounds(100, 100, 800, 425);
 		frmCrapsAGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCrapsAGame.setLocationRelativeTo(null);
 
